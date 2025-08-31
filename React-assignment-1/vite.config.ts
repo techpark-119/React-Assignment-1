@@ -8,5 +8,5 @@ export default defineConfig({
     react(),
     tailwindcss()
   ],
-  base: '/React-Assignment-1a/'
+  base: '/React-Assignment-1/'
 })
