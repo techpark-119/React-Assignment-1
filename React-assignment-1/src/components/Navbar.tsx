@@ -1,29 +1,33 @@
 import { useState } from 'react';
 import { Menu } from 'lucide-react';
+import { Link, useLocation } from 'react-router-dom';
 
 const Navbar: React.FC = () => {
     const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
+    const location = useLocation();
 
     return (
-        <nav className="border-gray-200 bg-white dark:bg-gray-900">
+        <nav className="fixed top-0 left-0 right-0 z-50 bg-gradient-to-r from-purple-600 via-blue-600 to-cyan-500 backdrop-blur-md shadow-lg">
             <div className="mx-auto flex max-w-screen-xl flex-wrap items-center justify-between p-4">
-                <a
-                    href="https://flowbite.com/"
-                    className="flex items-center space-x-3 rtl:space-x-reverse"
-                >
-                    <img
-                        src="https://flowbite.com/docs/images/logo.svg"
-                        className="h-8"
-                        alt="Flowbite Logo"
-                    />
-                    <span className="self-center whitespace-nowrap text-2xl font-semibold dark:text-white">
-                        Flowbite
+                <div className="flex items-center space-x-3">
+                    <div className="w-10 h-10 bg-gradient-to-br from-cyan-400 via-blue-500 to-purple-600 rounded-2xl flex items-center justify-center shadow-lg">
+                        <svg className="w-7 h-7 text-white" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+                            <circle cx="6" cy="6" r="3" fill="currentColor"/>
+                            <circle cx="18" cy="6" r="3" fill="currentColor"/>
+                            <circle cx="12" cy="18" r="3" fill="currentColor"/>
+                            <path d="M9 9l6 0" strokeLinecap="round"/>
+                            <path d="M9 9l3 6" strokeLinecap="round"/>
+                            <path d="M15 9l-3 6" strokeLinecap="round"/>
+                        </svg>
+                    </div>
+                    <span className="text-2xl font-bold text-white">
+                        WorkFlow
                     </span>
-                </a>
+                </div>
                 <button
                     onClick={() => setIsMenuOpen(!isMenuOpen)}
                     type="button"
-                    className="inline-flex h-10 w-10 items-center justify-center rounded-lg p-2 text-sm text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 md:hidden dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
+                    className="inline-flex h-10 w-10 items-center justify-center rounded-lg p-2 text-sm text-white hover:bg-white/20 focus:outline-none focus:ring-2 focus:ring-white/30 md:hidden"
                     aria-controls="navbar-default"
                     aria-expanded={isMenuOpen}
                 >
@@ -31,47 +35,46 @@ const Navbar: React.FC = () => {
                     <Menu className="h-5 w-5" />
                 </button>
                 <div className={`${isMenuOpen ? 'block' : 'hidden'} w-full md:block md:w-auto`} id="navbar-default">
-                    <ul className="mt-4 flex flex-col rounded-lg border border-gray-100 bg-gray-50 p-4 font-medium md:mt-0 md:flex-row md:space-x-8 md:border-0 md:bg-white md:p-0 rtl:space-x-reverse dark:border-gray-700 dark:bg-gray-800 md:dark:bg-gray-900">
+                    <ul className="mt-4 flex flex-col rounded-lg bg-white/10 backdrop-blur-md p-4 font-medium md:mt-0 md:flex-row md:space-x-8 md:border-0 md:bg-transparent md:p-0">
                         <li>
-                            <a
-                                href="#"
-                                className="block rounded-sm bg-blue-700 px-3 py-2 text-white md:bg-transparent md:p-0 md:text-blue-700 dark:text-white md:dark:text-blue-500"
-                                aria-current="page"
+                            <Link
+                                to="/"
+                                className={`block rounded-lg px-3 py-2 transition-colors ${location.pathname === '/' ? 'bg-white/20 text-white md:bg-white/20 md:text-white' : 'text-white/90 hover:bg-white/10 md:hover:text-white'}`}
                             >
                                 Home
-                            </a>
+                            </Link>
                         </li>
                         <li>
-                            <a
-                                href="#"
-                                className="block rounded-sm px-3 py-2 text-gray-900 hover:bg-gray-100 md:border-0 md:p-0 md:hover:bg-transparent md:hover:text-blue-700 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent md:dark:hover:text-blue-500"
+                            <Link
+                                to="/about"
+                                className={`block rounded-lg px-3 py-2 transition-colors ${location.pathname === '/about' ? 'bg-white/20 text-white md:bg-white/20 md:text-white' : 'text-white/90 hover:bg-white/10 md:hover:text-white'}`}
                             >
                                 About
-                            </a>
+                            </Link>
                         </li>
                         <li>
-                            <a
-                                href="#"
-                                className="block rounded-sm px-3 py-2 text-gray-900 hover:bg-gray-100 md:border-0 md:p-0 md:hover:bg-transparent md:hover:text-blue-700 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent md:dark:hover:text-blue-500"
+                            <Link
+                                to="/services"
+                                className={`block rounded-lg px-3 py-2 transition-colors ${location.pathname === '/services' ? 'bg-white/20 text-white md:bg-white/20 md:text-white' : 'text-white/90 hover:bg-white/10 md:hover:text-white'}`}
                             >
                                 Services
-                            </a>
+                            </Link>
                         </li>
                         <li>
-                            <a
-                                href="#"
-                                className="block rounded-sm px-3 py-2 text-gray-900 hover:bg-gray-100 md:border-0 md:p-0 md:hover:bg-transparent md:hover:text-blue-700 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent md:dark:hover:text-blue-500"
+                            <Link
+                                to="/pricing"
+                                className={`block rounded-lg px-3 py-2 transition-colors ${location.pathname === '/pricing' ? 'bg-white/20 text-white md:bg-white/20 md:text-white' : 'text-white/90 hover:bg-white/10 md:hover:text-white'}`}
                             >
                                 Pricing
-                            </a>
+                            </Link>
                         </li>
                         <li>
-                            <a
-                                href="#"
-                                className="block rounded-sm px-3 py-2 text-gray-900 hover:bg-gray-100 md:border-0 md:p-0 md:hover:bg-transparent md:hover:text-blue-700 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent md:dark:hover:text-blue-500"
+                            <Link
+                                to="/contact"
+                                className={`block rounded-lg px-3 py-2 transition-colors ${location.pathname === '/contact' ? 'bg-white/20 text-white md:bg-white/20 md:text-white' : 'text-white/90 hover:bg-white/10 md:hover:text-white'}`}
                             >
                                 Contact
-                            </a>
+                            </Link>
                         </li>
                     </ul>
                 </div>

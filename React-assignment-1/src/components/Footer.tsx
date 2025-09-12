@@ -7,21 +7,19 @@ const Footer: React.FC = () => {
         <div className="mx-auto max-w-screen-xl px-4 py-7">
           <div className="grid grid-cols-1 mt-6 gap-8 md:grid-cols-4">
             <div className="space-y-4">
-              <div className="flex items-center space-x-2">
-                <div className="flex items-center justify-center">
-                  <a
-                    href="https://flowbite.com/"
-                    className="flex items-center space-x-3 rtl:space-x-reverse"
-                  >
-                    <img
-                      src="https://flowbite.com/docs/images/logo.svg"
-                      className="h-8"
-                      alt="Flowbite Logo"
-                    />
-                  </a>
+              <div className="flex items-center space-x-3">
+                <div className="w-10 h-10 bg-gradient-to-br from-cyan-400 via-blue-500 to-purple-600 rounded-2xl flex items-center justify-center shadow-lg">
+                  <svg className="w-7 h-7 text-white" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+                    <circle cx="6" cy="6" r="3" fill="currentColor"/>
+                    <circle cx="18" cy="6" r="3" fill="currentColor"/>
+                    <circle cx="12" cy="18" r="3" fill="currentColor"/>
+                    <path d="M9 9l6 0" strokeLinecap="round"/>
+                    <path d="M9 9l3 6" strokeLinecap="round"/>
+                    <path d="M15 9l-3 6" strokeLinecap="round"/>
+                  </svg>
                 </div>
                 <span className="text-2xl font-bold text-white">
-                  {footerData.company.name}
+                  WorkFlow
                 </span>
               </div>
             </div>

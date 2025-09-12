@@ -1,22 +1,25 @@
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import Navbar from './components/Navbar'
-import Hero from './components/Hero'
-import Features from './components/Features'
-import FAQ from './components/FAQ'
-import BlogSection from './components/BlogSection'
-import Newsletter from './components/Newsletter'
 import Footer from './components/Footer'
+import Home from './pages/Home'
+import About from './pages/About'
+import Services from './pages/Services'
+import Pricing from './pages/Pricing'
+import Contact from './pages/Contact'
 
 const App = () => {
   return (
-    <>
+    <Router>
       <Navbar />
-      <Hero />
-      <Features />
-      <FAQ />
-      <BlogSection />
-      <Newsletter />
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/about" element={<About />} />
+        <Route path="/services" element={<Services />} />
+        <Route path="/pricing" element={<Pricing />} />
+        <Route path="/contact" element={<Contact />} />
+      </Routes>
       <Footer />
-    </>
+    </Router>
   )
 }
 

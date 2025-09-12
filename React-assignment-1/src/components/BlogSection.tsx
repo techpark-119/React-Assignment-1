@@ -1,15 +1,16 @@
 import { useState, useEffect } from 'react';
 import { ChevronDown } from 'lucide-react';
-import type { Post } from '../types';
+import type { Posts } from '../types';
 import { getRandomImage, getRandomDate, getRandomReadTime } from '../utils/blog';
 
 const BlogSection: React.FC = () => {
-    const [posts, setPosts] = useState<Post[]>([]);
+    const [posts, setPosts] = useState<Posts[]>([]);
 
     useEffect(() => {
-        fetch('https://jsonplaceholder.typicode.com/posts?_limit=6')
-            .then((response: Response) => response.json())
-            .then((data: Post[]) => setPosts(data));
+        fetch('https://dummyjson.com/c/0fbf-9108-43d1-8249')
+          .then((response: Response) => response.json())
+          .then((data: { posts: Posts[] }) => setPosts(data.posts || []))
+          .catch(() => setPosts([]))
     }, []);
 
     return (
@@ -30,11 +31,11 @@ const BlogSection: React.FC = () => {
             <section className="bg-white py-16">
             <div className="mx-auto max-w-screen-xl px-4">
                 <div className="mb-12">
-                    <h2 className="text-4xl font-bold text-gray-900 mb-4">Latest Articles</h2>
-                    <p className="text-gray-600">Diverse Range of articles related to Programming</p>
+                    <h2 className="text-4xl font-bold text-gray-900 mb-4">Latest Insights</h2>
+                    <p className="text-gray-600">Expert insights on business automation, productivity, and growth strategies</p>
                 </div>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                    {posts.map((post, index) => (
+                    {posts && posts.length > 0 ? posts.map((post, index) => (
                         <div key={post.id} className="bg-gray-50 rounded-lg overflow-hidden">
                             <div className="flex flex-col sm:flex-row">
                                 <img 
@@ -55,7 +56,11 @@ const BlogSection: React.FC = () => {
                                 </div>
                             </div>
                         </div>
-                    ))}
+                    )) : (
+                        <div className="col-span-2 text-center py-8">
+                            <p className="text-gray-500">Loading blog posts...</p>
+                        </div>
+                    )}
                 </div>
             </div>
             <div className="mx-auto max-w-screen-xl px-4 mt-16">

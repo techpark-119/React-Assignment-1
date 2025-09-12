@@ -12,7 +12,7 @@ export interface FAQItem {
     additionalContent?: string;
 }
 
-export interface Post {
+export interface Posts {
     id: number;
     title: string;
     body: string;
